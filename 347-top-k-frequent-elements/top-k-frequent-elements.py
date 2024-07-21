@@ -1,10 +1,17 @@
 class Solution:
     def topKFrequent(self, nums: List[int], k: int) -> List[int]:
-        hashmap = defaultdict(int)
-        for number in nums:
-            hashmap[number]+=1
-        top_k = list(sorted(hashmap.values(), reverse = True))[:k]
-        return [k for k,v in hashmap.items() if v in top_k]
+        count = {}
+        freq = [[] for i in range(len(nums)+1)]
+        for n in nums:
+            count[n] = 1 + count.get(n,0)
+        for n,c in count.items():
+            freq[c].append(n)
+        res = []
+        for i in range(len(freq)-1,0, -1):
+            for n in freq[i]:
+                res.append(n)
+        return res[:k]
+
         
 
         
