@@ -1,13 +1,7 @@
-WITH end_activity AS(
-    Select machine_id, sum(timestamp)/count(*) as avg_time from Activity 
-    where activity_type = 'end'
-    group by machine_id
-),
-start_activity AS(
-    Select machine_id, sum(timestamp)/count(*) as avg_time from Activity 
-    where activity_type= 'start'
-    group by machine_id
-)
-Select e.machine_id, ROUND((e.avg_time-s.avg_time)::numeric,3) as processing_time
-FROM end_activity e join start_activity s
-on e.machine_id = s.machine_id
+Select A1.machine_id, ROUND(AVG((A1.timestamp-A2.timestamp)::numeric),3) as processing_time
+FROM Activity A1 join Activity A2
+on A1.machine_id = A2.machine_id 
+AND A1.process_id = A2.process_id
+AND A1.activity_type = 'end'
+AND A2.activity_type = 'start'
+group by A1.machine_id
