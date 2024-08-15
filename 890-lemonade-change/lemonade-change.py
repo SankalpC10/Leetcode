@@ -14,6 +14,8 @@ class Solution:
                     bill_10 +=1
                     bill_5 -=1
             else:
+                if bill_5<1:
+                    return False
                 if bill_10>=1 and bill_5>=1:
                     bill_10 -= 1
                     bill_5 -= 1
