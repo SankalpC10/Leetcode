@@ -8,21 +8,16 @@ class Solution:
             if i ==5:
                 bill_5 += 1
             elif i == 10:
-                if bill_5<1:
-                    return False
-                else:
-                    bill_10 +=1
-                    bill_5 -=1
+                bill_10 +=1
+                bill_5 -=1
             else:
-                if bill_5<1:
-                    return False
                 if bill_10>=1 and bill_5>=1:
                     bill_10 -= 1
                     bill_5 -= 1
-                elif bill_5 >=3:
-                    bill_5 -=3
                 else:
-                    return False
+                    bill_5 -=3
+            if bill_5 < 0:
+                return False
         return True
                 
                 
