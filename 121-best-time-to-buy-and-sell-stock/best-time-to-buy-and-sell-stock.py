@@ -1,7 +1,7 @@
 class Solution:
     def maxProfit(self, prices: List[int]) -> int:
-        max_profit, low = 0,prices[0]
+        max_p,lowest = 0,prices[0]
         for i in prices:
-            max_profit = max(i-low, max_profit)
-            low  = min(i, low)
-        return max_profit
+            max_p = max(i-lowest, max_p)
+            lowest = min(lowest, i)
+        return max_p
