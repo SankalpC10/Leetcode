@@ -1,12 +1,15 @@
 class Solution:
     def countConsistentStrings(self, allowed: str, words: List[str]) -> int:
-        ip=[i for i in allowed]
-        count =0
-        for i in words:
-            flag = True
-            for j in i:
-                if j not in ip:
-                    flag = False
-            if flag:
-                count +=1
-        return count
+        # Create a set to store the allowed characters
+        allowed_chars = set(allowed)
+
+        consistent_count = 0
+
+        # Iterate through each word in the 'words' list
+        for word in words:
+            # Check if all characters in the word are in allowed_chars
+            if all(char in allowed_chars for char in word):
+                consistent_count += 1
+
+        # Return the total count of consistent strings
+        return consistent_count
