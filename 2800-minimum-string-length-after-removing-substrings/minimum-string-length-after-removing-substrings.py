@@ -3,8 +3,6 @@ class Solution:
         while "AB" in s or "CD" in s:
             if "AB" in s:
                 s = s.replace("AB","")
-                continue
             else:
                 s = s.replace("CD","")
-                continue
         return len(s)
