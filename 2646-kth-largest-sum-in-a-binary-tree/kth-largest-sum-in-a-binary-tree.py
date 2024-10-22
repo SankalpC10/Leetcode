@@ -6,22 +6,22 @@
 #         self.right = right
 class Solution:
     def kthLargestLevelSum(self, root: Optional[TreeNode], k: int) -> int:
-        pq = []
-        bfs_queue = deque()
-        bfs_queue.append(root)
-        while bfs_queue:
-            size = len(bfs_queue)
+        res = []
+        q = deque([root])
+        while q:
+            n = len(q)
             level_sum = 0
-            for _ in range(size):
-                node = bfs_queue.popleft()
+            
+            for _ in range(n):
+                node = q.popleft()
                 level_sum += node.val
+
                 if node.left:
-                    bfs_queue.append(node.left)
+                    q.append(node.left)
                 if node.right:
-                    bfs_queue.append(node.right)
-            heapq.heappush(pq,-level_sum)
-        if len(pq) < k:
+                    q.append(node.right)
+            res.append(level_sum)
+        if k> len(res):
             return -1
-        for _ in range(k-1):
-            heapq.heappop(pq)
-        return -heapq.heappop(pq)
+        res.sort(reverse = True)
+        return res[k-1]
