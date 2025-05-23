@@ -6,4 +6,3 @@ class Solution:
             if req in hashmap:
                 return [hashmap[req],i]
             hashmap[nums[i]] = i
-        return []
