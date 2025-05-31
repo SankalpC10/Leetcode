@@ -6,12 +6,11 @@ class Solution:
         left_max,right_max = height[l], height[r]
         while l<r:
             if left_max<right_max:
-                
                 left_max = max(left_max,height[l])
                 res += left_max - height[l]
                 l += 1
             else:
                 r -= 1
                 right_max = max(right_max,height[r])
-                res += right_max - height[r]
+                res += right_max - height[r]     
         return res
